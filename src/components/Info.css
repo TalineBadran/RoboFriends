@@ -1,0 +1,42 @@
+.information {
+    border-radius: .5rem;
+    box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, .2);
+    background-color: #9eebcf;
+    width: 35%;
+    padding: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.css-13r4j3i {
+    display: flex;
+    justify-content: center;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+}
+
+.label {
+    width: 175px;
+}
+
+/* .input {
+  display: flex;
+  flex-direction: column;
+} */
+
+/* #phrase, #bs{
+  text-align: center;
+} */
+
+/* ul {
+  list-style: none;
+}
+
+ul li {
+  color: black;
+  font-size: 20px;
+} */
