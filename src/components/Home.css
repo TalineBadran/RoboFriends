@@ -1,58 +1,80 @@
-  h1 {
-    font-family: SEGA LOGO FONT;
-    font-weight: 200;
-    color: #0ccac4;
-    font-size: 3rem;
-    margin-bottom: 43px;
-  }
-  
-  .header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 6px;
-    margin-bottom: 7px;
-    width: 100%;
-  }
-  
-  .searchbar {
-    background-color: #cdecff;
-    font-size: 16px;
-    padding: 1rem;
-    border-color: #19a974;
-    border-style: solid;
-    border-width: 1px;
-  }
-  
-  .robots {
-    display: flex;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-    border: 5px solid black;
-    justify-content: center;
-    height: calc(100vh - 200px);
-  }
-  
-  .robot{
-    background-color: #9eebcf;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, .2);
-    border-radius: .5rem;
-    margin: 8px;
-    padding: 16px;
-    cursor: pointer;
-    transition: transform 0.3s;
-  }
-  
-  .robot:hover {
-    transform: scale(1.05);
-  }
-  
-  .info {
-    width: 100%;
-    text-align: center;
-  }
+h1 {
+  font-family: SEGA LOGO FONT;
+  font-weight: 200;
+  color: #0ccac4;
+  font-size: 3rem;
+  margin-bottom: 43px;
+}
 
-  
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 6px;
+  margin-bottom: 7px;
+  width: 100%;
+}
+
+.searchbar {
+  background-color: #cdecff;
+  font-size: 16px;
+  padding: 1rem;
+  border-color: #19a974;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.home {
+  width: 100%;
+}
+
+.robots {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  border: 5px solid black;
+  justify-content: center;
+  height: calc(100vh - 200px);
+}
+
+.robot {
+  background-color: #9eebcf;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  margin: 8px;
+  padding: 16px;
+  transition: transform 0.3s;
+  height: 60%;
+}
+
+.robot:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.info {
+  width: 100%;
+  text-align: center;
+}
+
+.CRUD {
+  display: flex;
+  justify-content: space-between;
+}
+
+.popup {
+  display: none;
+}
+
+.robot:hover .popup {
+  display: flex;
+}
+
+#popup-button {
+  background-color: #9eebcf;
+  color: black;
+  height: 25px;
+}

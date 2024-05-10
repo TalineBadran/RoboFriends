@@ -4,6 +4,8 @@ body{
   padding: 0;
   font-family: sans-serif;
   width: 100%;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 @font-face {
@@ -11,7 +13,7 @@ body{
   src: url('C:\Users\Taline Badran\Desktop\Dev\React\firstproject\src\font\SEGA.TTF') format('truetype');
 }
 
-
+/* 
 h1 {
   font-family: SEGA LOGO FONT;
   font-weight: 200;
@@ -67,4 +69,4 @@ h1 {
   width: 100%;
   text-align: center;
 }
-
+ */
