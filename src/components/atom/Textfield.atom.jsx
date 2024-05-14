@@ -11,7 +11,8 @@ const Textfield = ({
   value,
   placeholder,
   errorMessage,
-  touched
+  touched,
+  isDisabled
 }) => {
   return (
     <Box
@@ -34,6 +35,7 @@ const Textfield = ({
           onChange={onChange}
           value={value}
           placeholder={placeholder}
+          disabled={isDisabled}
         />
       </div>
       {touched && errorMessage && <div className="error">{errorMessage}</div>}

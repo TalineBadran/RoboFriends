@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import { DialogActions, DialogContent, DialogTitle } from "@mui/material";
+import IconButton from '@mui/material/IconButton';
 
 import "./Home.css";
 import Search from "./Search";
-import Info from "./Info";
 import Robot from "./Robot";
 import RobotInfo from "./RobotInfo";
-import Dialog from "@mui/material/Dialog";
-import {
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from "@mui/material";
 
 function Home() {
   const [filterText, setFilterText] = useState("");
@@ -22,39 +16,56 @@ function Home() {
   const [open, setOpen] = useState(false);
   const [openDel, setOpenDel] = useState(false);
   const [robot, setRobot] = useState({});
+  const [editRobot, setEditRobot] = useState({});
+  console.log(editRobot)
+
+
+  // console.log(robots)
+
+  const handleRemoveItem = (index) => {
+    const del = [...robots];
+    del.splice(index-1, 1);
+    setRobots(del);
+  }
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const updateRobots = (editRobot) => { robots.map(robot => 
+      (editRobot?.id === robot.id) ? editRobot : robot);
+      setRobots(updateRobots)
+    }
+  
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      setRobots(
+        response.data.map((robot, index) => ({
+          ...robot,
+          imageUrl: `https://robohash.org/${index + 1}?size=200x200`,
+        }))
+      );
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://jsonplaceholder.typicode.com/users"
-        );
-        setRobots(
-          response.data.map((robot, index) => ({
-            ...robot,
-            id: index + 1,
-            imageUrl: `https://robohash.org/${index + 1}?size=200x200`,
-          }))
-        );
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
     fetchData();
   }, []);
+
+  // useEffect(() => {
+  //   console.log("robots", robots);
+  // }, [robots]);
 
   const filteredRobots = robots.filter((robot) =>
     robot.name.toLowerCase().includes(filterText.toLowerCase())
   );
 
-  // const test = () => {
-  //   <Dialog>
-  //     {/* <DialogContent>
-  //       <RobotInfo/>
-  //     </DialogContent> */}
-  //   </Dialog>;
-  // };
 
   return (
     <>
@@ -74,58 +85,43 @@ function Home() {
             //   key={robot.id}
             //   onClick={() => navigate(`info/${robot.id}`)}
             // >
+
             <Robot
               robot={robot}
               onEdit={() => {
                 setOpen(true);
                 setRobot(robot);
               }}
-
-              onClick= {() => setOpenDel(true)}
+              onClick={() => {setOpenDel(true); setRobot(robot);}}
             />
             // </div>
           ))}
         </div>
-        {/* <div className="CRUD">
-      <div className="create">
-        <button type="submit" onClick={() => navigate("/post")}>Create a Robot</button>
-      </div>
-      <div className="get">
-        <button type="submit" onClick={() => navigate("/get")}>Listing a ressource</button>
-      </div>
-      <div className="put">
-        <button type="submit" onClick={() => navigate("/put")}>Update a ressource</button>
-      </div>
-      <div className="patch">
-        <button type="submit" onClick={() => navigate("/patch")}>Patch a ressource</button>
-      </div>
-      <div className="delete">
-        <button type="submit" onClick={() => navigate("/delete")}>Delete a ressource</button>
-      </div>
-      // </div> */}
       </div>
       <div>
-      <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogContent>
-          <RobotInfo data={robot} type='popup' />
-        </DialogContent>
-      </Dialog>
+        <Dialog open={open} onClose={() => setOpen(false)}>
+        <IconButton aria-label="close" onClick={handleClose}>
+          CLOSE
+  </IconButton>
+          <DialogContent>
+            <RobotInfo data={robot} type="popup" setEditRobot={setEditRobot}/>
+          </DialogContent>
+        </Dialog>
       </div>
       <div>
-      <Dialog open={openDel} onClose={() => setOpenDel(false)} fullWidth>
-            <DialogTitle>
-              Are you sure you want to delete this robot?
-            </DialogTitle>
-            <DialogActions className="error">
-              <Button
-                color="error"
-                variant="contained"
-                id="delete"
-              >
-                Delete
-              </Button>
-            </DialogActions>
-          </Dialog> 
+        <Dialog open={openDel} onClose={() => setOpenDel(false)} fullWidth>
+          <DialogTitle>Are you sure you want to delete this robot?</DialogTitle>
+          <DialogActions className="error">
+            <Button
+              color="error"
+              variant="contained"
+              id="delete"
+              onClick={ () => handleRemoveItem(robot?.id)}
+            >
+              Delete
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </>
   );

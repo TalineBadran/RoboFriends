@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
+
 import "./Info.css";
 import RobotInfo from "./RobotInfo";
 
@@ -29,7 +30,7 @@ function Info() {
   }, [id]);
 
   return (
-        <RobotInfo data={data} />
+        <RobotInfo data={data} isDisabled />
   );
 }
 

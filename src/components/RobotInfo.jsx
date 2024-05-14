@@ -1,11 +1,12 @@
-import React from "react";
-import "./Info.css";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Textfield from "./atom/Textfield.atom";
 import { useEffect } from "react";
 
-function RobotInfo({data, type}) {
+import "./Info.css";
+
+function RobotInfo({data, type, isDisabled, setEditRobot}) {
+
   const validationSchema = yup.object().shape({
     name: yup
       .string()
@@ -34,7 +35,7 @@ function RobotInfo({data, type}) {
 
   const initialValues = {
     name: "",
-    robotname: "",
+    username: "",
     email: '',
     address: {
       street: "",
@@ -63,19 +64,18 @@ function RobotInfo({data, type}) {
   const formik = useFormik({
     initialValues: initialValues,
     onSubmit: (values) => {
-      alert(
-        "Registration Form Submitted \n " + JSON.stringify(values, null, 2)
-      );
-      console.log(values);
+      setEditRobot(values);
+      // alert(
+      //   "Registration Form Submitted \n " + JSON.stringify(values, null, 2)
+      // );
+      // console.log(values);
     },
     validationSchema: validationSchema,
   });
 
-  
-
   return (
     <form onSubmit={formik.handleSubmit}>
-      <div className={`information $(type === 'popup' ? 'popup-information' : 'view-information')`}>
+      <div className={type ? 'popup-information' : 'information'}>
         <Textfield
           label="Name:"
           name="name"
@@ -86,17 +86,19 @@ function RobotInfo({data, type}) {
           placeholder="Name"
           errorMessage={formik.errors?.name}
           touched={formik.touched?.name}
+          isDisabled={isDisabled}
         />
         <Textfield
-          label="Robot Name:"
-          name="robotname"
-          id="robotname"
+          label="Username:"
+          name="username"
+          id="username"
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
-          value={formik.values?.robotname}
-          placeholder="Robot Name"
-          errorMessage={formik.errors?.robotname}
-          touched={formik.touched?.robotname}
+          value={formik.values?.username}
+          placeholder="Username"
+          errorMessage={formik.errors?.username}
+          touched={formik.touched?.username}
+          isDisabled={isDisabled}
         />
         <Textfield
           label="Email:"
@@ -108,17 +110,19 @@ function RobotInfo({data, type}) {
           placeholder="Email"
           errorMessage={formik.errors?.email}
           touched={formik.touched?.email}
+          isDisabled={isDisabled}
         />
         <Textfield
           label="Address Street:"
           name="address.street"
           id="street"
+          placeholder="Street"
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values?.address?.street}
-          placeholder="Street"
           errorMessage={formik.errors.address?.street}
           touched={formik.touched.address?.street}
+          isDisabled={isDisabled}
         />
         <Textfield
           label="Address Suite:"
@@ -130,6 +134,7 @@ function RobotInfo({data, type}) {
           placeholder="Suite"
           errorMessage={formik.errors.address?.suite}
           touched={formik.touched.address?.suite}
+          isDisabled={isDisabled}
         />
         <Textfield
           label="Address City:"
@@ -141,6 +146,7 @@ function RobotInfo({data, type}) {
           placeholder="City"
           errorMessage={formik.errors.address?.city}
           touched={formik.touched.address?.city}
+          isDisabled={isDisabled}
         />
         <Textfield
           label="Address Zip Code:"
@@ -152,6 +158,7 @@ function RobotInfo({data, type}) {
           placeholder="Zip Code"
           errorMessage={formik.errors.address?.zipcode}
           touched={formik.touched.address?.zipcode}
+          isDisabled={isDisabled}
         />
         <Textfield
           label="Latitude:"
@@ -163,6 +170,7 @@ function RobotInfo({data, type}) {
           placeholder="Latitude"
           errorMessage={formik.errors.address?.geo?.lat}
           touched={formik.touched.address?.geo?.lat}
+          isDisabled={isDisabled}
         />
         <Textfield
           label="Longitude:"
@@ -174,6 +182,7 @@ function RobotInfo({data, type}) {
           placeholder="Longitude"
           errorMessage={formik.errors.address?.geo?.lng}
           touched={formik.touched.address?.geo?.lng}
+          isDisabled={isDisabled}
         />
         <Textfield
           label="Phone:"
@@ -185,17 +194,19 @@ function RobotInfo({data, type}) {
           placeholder="Phone"
           errorMessage={formik.errors?.phone}
           touched={formik.touched?.phone}
+          isDisabled={isDisabled}
         />
         <Textfield
           label="Website:"
           name="website"
           id="website"
           onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
+          onChange={type && formik.handleChange}
           value={formik.values?.website}
           placeholder="Website"
           errorMessage={formik.errors?.website}
           touched={formik.touched?.website}
+          isDisabled={isDisabled}
         />
         <Textfield
           label="Company Name:"
@@ -207,6 +218,7 @@ function RobotInfo({data, type}) {
           placeholder="Company Name"
           errorMessage={formik.errors?.company?.name}
           touched={formik.touched?.company?.name}
+          isDisabled={isDisabled}
         />
         <Textfield
           label="Company Catch Phrase:"
@@ -218,6 +230,8 @@ function RobotInfo({data, type}) {
           placeholder="Catch Phrase"
           errorMessage={formik.errors?.company?.catchPhrase}
           touched={formik.touched?.company?.catchPhrase}
+          isDisabled={isDisabled}
+          is
         />
         <Textfield
           label="Company BS:"
@@ -229,12 +243,15 @@ function RobotInfo({data, type}) {
           placeholder="Company BS"
           errorMessage={formik.errors?.company?.bs}
           touched={formik.touched?.company?.bs}
+          isDisabled={isDisabled}
         />
+        {type && (
         <div className="input">
           <button id="button" type="submit">
             Submit
           </button>
         </div>
+        )}
       </div>
     </form>
   );

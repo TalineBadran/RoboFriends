@@ -1,27 +1,20 @@
 .information {
+  border-radius: 0.5rem;
+  box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: #9eebcf;
+  width: 35%;
+  padding: 15px;
   display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    height: fit-content;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: fit-content;
 }
-  
-  .view-information {
-    border-radius: .5rem;
-    box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, .2);
-    background-color: #9eebcf;
-    width: 35%;
-    padding: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    height: fit-content;
-  }
 
-  .popup-information {
-    border-radius: .5rem;
-    padding: 15px;
-   
-  }
+.popup-information {
+  background-color: #9eebcf;
+  border-radius: 0.5rem;
+  padding: 15px;
+}
 
 form {
   display: flex;
@@ -31,10 +24,10 @@ form {
 }
 
 .input {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 input {
@@ -47,7 +40,7 @@ input {
 
 .form {
   display: flex;
-  justify-content: center ;
+  justify-content: center;
   width: 100%;
   align-items: center;
 }
@@ -57,7 +50,6 @@ input {
   margin-top: 10px;
   border-radius: 4px;
   height: 40px;
-
 }
 
 .error {

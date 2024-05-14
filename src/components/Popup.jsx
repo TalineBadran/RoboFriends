@@ -1,9 +1,7 @@
 import React from "react";
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import { DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { DialogActions, DialogContent, DialogContentText } from "@mui/material";
 
 function Popup(props) {
 //   const functionOpen = () => {
