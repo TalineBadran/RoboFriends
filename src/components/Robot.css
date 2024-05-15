@@ -1,0 +1,36 @@
+.robot {
+    background-color: #9eebcf;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    margin: 8px;
+    padding: 16px;
+    transition: transform 0.3s;
+    height: 60%;
+  }
+  
+  .robot:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+
+  .popup {
+    display: none;
+  }
+  
+  .robot:hover .popup {
+    display: flex;
+  }
+
+  #popup-button {
+    background-color: #9eebcf;
+    color: black;
+    height: 25px;
+  }
+  
+  .info {
+    width: 100%;
+    text-align: center;
+  }

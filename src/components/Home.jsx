@@ -3,7 +3,6 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import { DialogActions, DialogContent, DialogTitle } from "@mui/material";
-import IconButton from '@mui/material/IconButton';
 
 import "./Home.css";
 import Search from "./Search";
@@ -17,26 +16,12 @@ function Home() {
   const [openDel, setOpenDel] = useState(false);
   const [robot, setRobot] = useState({});
   const [editRobot, setEditRobot] = useState({});
-  console.log(editRobot)
 
-
-  // console.log(robots)
-
-  const handleRemoveItem = (index) => {
-    const del = [...robots];
-    del.splice(index-1, 1);
-    setRobots(del);
+  const handleRemoveRobot = (id) => {
+    const deletedRobots = robots.filter((robot) => robot.id !== id);
+    setRobots(deletedRobots);
+    setOpenDel(false);
   }
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const updateRobots = (editRobot) => { robots.map(robot => 
-      (editRobot?.id === robot.id) ? editRobot : robot);
-      setRobots(updateRobots)
-    }
-  
 
   const fetchData = async () => {
     try {
@@ -58,11 +43,9 @@ function Home() {
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   console.log("robots", robots);
-  // }, [robots]);
-
-  const filteredRobots = robots.filter((robot) =>
+  const filteredRobots = robots.map((robot) =>
+    robot.id === editRobot.id ? editRobot : robot
+  ).filter((robot) =>
     robot.name.toLowerCase().includes(filterText.toLowerCase())
   );
 
@@ -81,11 +64,6 @@ function Home() {
         </div>
         <div className="robots">
           {filteredRobots.map((robot) => (
-            // <div
-            //   key={robot.id}
-            //   onClick={() => navigate(`info/${robot.id}`)}
-            // >
-
             <Robot
               robot={robot}
               onEdit={() => {
@@ -100,23 +78,20 @@ function Home() {
       </div>
       <div>
         <Dialog open={open} onClose={() => setOpen(false)}>
-        <IconButton aria-label="close" onClick={handleClose}>
-          CLOSE
-  </IconButton>
           <DialogContent>
-            <RobotInfo data={robot} type="popup" setEditRobot={setEditRobot}/>
+            <RobotInfo data={robot} type="popup" setOpen={setOpen} setEditRobot={setEditRobot}/>
           </DialogContent>
         </Dialog>
       </div>
       <div>
         <Dialog open={openDel} onClose={() => setOpenDel(false)} fullWidth>
           <DialogTitle>Are you sure you want to delete this robot?</DialogTitle>
-          <DialogActions className="error">
+          <DialogActions >
             <Button
               color="error"
               variant="contained"
               id="delete"
-              onClick={ () => handleRemoveItem(robot?.id)}
+              onClick={ () => handleRemoveRobot(robot?.id)}
             >
               Delete
             </Button>

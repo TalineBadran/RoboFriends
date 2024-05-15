@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 
-import "./Info.css";
 import RobotInfo from "./RobotInfo";
 
 function Info() {

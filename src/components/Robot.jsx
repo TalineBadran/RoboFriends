@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
+import "./Robot.css"
+
 function Robot({ robot, onEdit, onClick }) {
- 
   const navigate = useNavigate();
 
   return (
@@ -11,7 +12,6 @@ function Robot({ robot, onEdit, onClick }) {
       <div className="robot">
         <div className="popup">
           <Button
-            // onClick={() => navigate(`view/${robot.id}`)}
             onClick={() => navigate(`info/${robot.id}`)}
             variant="contained" id='popup-button'
           >

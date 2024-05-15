@@ -3,17 +3,17 @@ import * as yup from "yup";
 import Textfield from "./atom/Textfield.atom";
 import { useEffect } from "react";
 
-import "./Info.css";
+import "./RobotInfo.css"
 
-function RobotInfo({data, type, isDisabled, setEditRobot}) {
+function RobotInfo({data, type, isDisabled, setOpen, setEditRobot}) {
 
   const validationSchema = yup.object().shape({
     name: yup
       .string()
       .required("Name is required.")
       .min(3, "Minimum 3 characters required"),
-    robotname: yup.string(),
-    email: yup.string().required('Email is required'),
+    username: yup.string().required("Username is required"),
+    email: yup.string().email('Invalid email').required('Email is required'),
     address: yup.object().shape({
       street: yup.string().required("Address Street is required"),
       suite: yup.string().required("Address Suite is required"),
@@ -28,7 +28,7 @@ function RobotInfo({data, type, isDisabled, setEditRobot}) {
     website: yup.string().required("Website is required"),
     company: yup.object().shape({
       name: yup.string().required("Company Name is required"),
-      catchPhrase: yup.string().required("Company Catch Phrase is required"),
+      catchPhrase: yup.string().required("Catch Phrase is required"),
       bs: yup.string().required("Company BS is required"),
     }),
   });
@@ -65,10 +65,7 @@ function RobotInfo({data, type, isDisabled, setEditRobot}) {
     initialValues: initialValues,
     onSubmit: (values) => {
       setEditRobot(values);
-      // alert(
-      //   "Registration Form Submitted \n " + JSON.stringify(values, null, 2)
-      // );
-      // console.log(values);
+      setOpen(false);
     },
     validationSchema: validationSchema,
   });

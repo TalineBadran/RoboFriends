@@ -1,0 +1,23 @@
+.label {
+    width: 190px;
+  }
+  
+  .form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+  }
+
+  .error {
+    color: red;
+    margin: 5px;
+    margin-left: calc(100% - 235px);
+  }
+  
+  #root {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+  }
+
