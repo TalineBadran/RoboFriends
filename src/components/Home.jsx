@@ -21,7 +21,7 @@ function Home() {
     const deletedRobots = robots.filter((robot) => robot.id !== id);
     setRobots(deletedRobots);
     setOpenDel(false);
-  }
+  };
 
   const fetchData = async () => {
     try {
@@ -43,12 +43,11 @@ function Home() {
     fetchData();
   }, []);
 
-  const filteredRobots = robots.map((robot) =>
-    robot.id === editRobot.id ? editRobot : robot
-  ).filter((robot) =>
-    robot.name.toLowerCase().includes(filterText.toLowerCase())
-  );
-
+  const filteredRobots = robots
+    .map((robot) => (robot.id === editRobot.id ? editRobot : robot))
+    .filter((robot) =>
+      robot.name.toLowerCase().includes(filterText.toLowerCase())
+    );
 
   return (
     <>
@@ -64,34 +63,63 @@ function Home() {
         </div>
         <div className="robots">
           {filteredRobots.map((robot) => (
-            <Robot
-              robot={robot}
-              onEdit={() => {
-                setOpen(true);
-                setRobot(robot);
-              }}
-              onClick={() => {setOpenDel(true); setRobot(robot);}}
-            />
-            // </div>
+            <>
+              <Robot
+                robot={robot}
+                onEdit={() => {
+                  setOpen(true);
+                  setRobot(robot);
+                }}
+                onClick={() => {
+                  setOpenDel(true);
+                  setRobot(robot);
+                }}
+              />
+            </>
           ))}
         </div>
       </div>
       <div>
-        <Dialog open={open} onClose={() => setOpen(false)}>
-          <DialogContent>
-            <RobotInfo data={robot} type="popup" setOpen={setOpen} setEditRobot={setEditRobot}/>
+        <Dialog open={open} onClose={() => setOpen(false)}  >
+          <DialogContent className="hidden-scrollbar">
+            <div className="close edit-icon">
+              <img
+                className="close-icon"
+                src="https://www.svgrepo.com/show/510924/close-md.svg"
+                alt="close icon"
+                onClick={() => setOpen(false)}
+              ></img>
+            </div>
+            <RobotInfo
+              data={robot}
+              type="popup"
+              setOpen={setOpen}
+              setEditRobot={setEditRobot}
+            />
           </DialogContent>
         </Dialog>
       </div>
       <div>
         <Dialog open={openDel} onClose={() => setOpenDel(false)} fullWidth>
-          <DialogTitle>Are you sure you want to delete this robot?</DialogTitle>
-          <DialogActions >
+          <DialogTitle>
+            <div className="title">
+            Are you sure you want to delete this robot?
+            <div className="close">
+              <img
+                className="close-icon"
+                src="https://www.svgrepo.com/show/510924/close-md.svg"
+                alt="close icon"
+                onClick={() => setOpenDel(false)}
+              ></img>
+            </div>
+            </div>
+          </DialogTitle>
+          <DialogActions>
             <Button
               color="error"
               variant="contained"
               id="delete"
-              onClick={ () => handleRemoveRobot(robot?.id)}
+              onClick={() => handleRemoveRobot(robot?.id)}
             >
               Delete
             </Button>

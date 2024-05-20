@@ -29,7 +29,8 @@ function Info() {
   }, [id]);
 
   return (
-        <RobotInfo data={data} isDisabled />
+    <>
+    <RobotInfo data={data} isDisabled /></>
   );
 }
 

@@ -19,6 +19,11 @@ h1 {
   width: 100%;
 }
 
+.hidden-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  height: 0px; 
+}
+
 .robots {
   display: flex;
   flex-wrap: wrap;
@@ -26,5 +31,24 @@ h1 {
   border: 5px solid black;
   justify-content: center;
   height: calc(100vh - 200px);
+}
+
+.title {
+  display: flex;
+}
+
+.close {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 45%;
+}
+
+.close-icon {
+  height: 25px;
+}
+
+.edit-icon {
+  width: 100%;
 }
 

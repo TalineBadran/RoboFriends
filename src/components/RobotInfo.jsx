@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import Textfield from "./atom/Textfield.atom";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./RobotInfo.css"
 
@@ -56,6 +57,8 @@ function RobotInfo({data, type, isDisabled, setOpen, setEditRobot}) {
     },
   };
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     formik.setValues(data);  
   }, 
@@ -73,6 +76,10 @@ function RobotInfo({data, type, isDisabled, setOpen, setEditRobot}) {
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className={type ? 'popup-information' : 'information'}>
+        {!type && (
+      <div className="return-icon">
+      <img className="return-icon-img" src="https://www.svgrepo.com/show/500472/back.svg" alt="return button" onClick={() => navigate('/')}></img>
+    </div> )}
         <Textfield
           label="Name:"
           name="name"

@@ -36,3 +36,17 @@
     border-radius: 4px;
     height: 40px;
   }
+
+  .MuiDialogContent-root {
+    background-color: #9eebcf;
+  }
+
+  .return-icon-img {
+    height: 30px;
+  }
+
+  .return-icon {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }

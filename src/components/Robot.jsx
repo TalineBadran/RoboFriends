@@ -11,26 +11,27 @@ function Robot({ robot, onEdit, onClick }) {
     <>
       <div className="robot">
         <div className="popup">
-          <Button
+          {/* <Button
             onClick={() => navigate(`info/${robot.id}`)}
             variant="contained" id='popup-button'
           >
             View
-          </Button>
+          </Button> */}
           <Button
             onClick={onEdit}
             variant="contained" id='popup-button'
+            className="edit"
           >
-            Edit
+            <img className="icon" src="https://www.svgrepo.com/show/485709/edit.svg" alt="edit icon"></img>
           </Button>
           <Button onClick={onClick} variant="contained" id='popup-button'>
-            Delete
+            <img className="icon" src="https://www.svgrepo.com/show/488897/delete-2.svg" alt="delete icon"></img>
           </Button>
         </div>
-          <div className="img">
+          <div className="img" onClick={() => navigate(`info/${robot.id}`)}>
             {robot.imageUrl && <img src={robot.imageUrl} alt={robot.name} />}
           </div>
-          <div className="info">
+          <div className="info" onClick={() => navigate(`info/${robot.id}`)}>
             <h2>{robot.name}</h2>
             <p>{robot.email}</p>
           </div>

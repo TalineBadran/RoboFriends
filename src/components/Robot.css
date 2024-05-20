@@ -22,6 +22,8 @@
   
   .robot:hover .popup {
     display: flex;
+    justify-content: space-around;
+    width: 100%;
   }
 
   #popup-button {
@@ -34,3 +36,8 @@
     width: 100%;
     text-align: center;
   }
+
+  .icon {
+    height: 25px;
+  }
+
