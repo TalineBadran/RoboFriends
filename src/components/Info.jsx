@@ -13,7 +13,7 @@ function Info() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://jsonplaceholder.typicode.com/users/${id}`
+        `http://localhost:8080/user/${id}`
       );
 
       console.log("=====>", response?.data);

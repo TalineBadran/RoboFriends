@@ -52,3 +52,29 @@ h1 {
   width: 100%;
 }
 
+.create {
+  display: flex;
+  width: 100%;
+}
+
+.search-field {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.create-button {
+  display: flex;
+  justify-content: flex-end;
+  width: 0%;
+  margin-right: 30px;
+}
+
+.create-icon {
+  height: 40px;
+}
+
+.create-button:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}

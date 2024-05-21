@@ -28,10 +28,10 @@ function Robot({ robot, onEdit, onClick }) {
             <img className="icon" src="https://www.svgrepo.com/show/488897/delete-2.svg" alt="delete icon"></img>
           </Button>
         </div>
-          <div className="img" onClick={() => navigate(`info/${robot.id}`)}>
+          <div className="img" onClick={() => navigate(`info/${robot._id}`)}>
             {robot.imageUrl && <img src={robot.imageUrl} alt={robot.name} />}
           </div>
-          <div className="info" onClick={() => navigate(`info/${robot.id}`)}>
+          <div className="info" onClick={() => navigate(`info/${robot._id}`)}>
             <h2>{robot.name}</h2>
             <p>{robot.email}</p>
           </div>

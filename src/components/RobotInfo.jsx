@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./RobotInfo.css"
 
-function RobotInfo({data, type, isDisabled, setOpen, setEditRobot}) {
+function RobotInfo({data, type, isDisabled, setOpen, setEditRobot, onSave, onSubmit}) {
 
   const validationSchema = yup.object().shape({
     name: yup
@@ -20,17 +20,11 @@ function RobotInfo({data, type, isDisabled, setOpen, setEditRobot}) {
       suite: yup.string().required("Address Suite is required"),
       city: yup.string().required("Address City is required"),
       zipcode: yup.string().required("Address Zip Code is required"),
-      geo: yup.object().shape({
-        lat: yup.string().required("Latitude is required"),
-        lng: yup.string().required("Longitude is required"),
-      }),
     }),
     phone: yup.string().required("Phone number is required"),
     website: yup.string().required("Website is required"),
     company: yup.object().shape({
       name: yup.string().required("Company Name is required"),
-      catchPhrase: yup.string().required("Catch Phrase is required"),
-      bs: yup.string().required("Company BS is required"),
     }),
   });
 
@@ -43,31 +37,25 @@ function RobotInfo({data, type, isDisabled, setOpen, setEditRobot}) {
       suite: "",
       city: "",
       zipcode: "",
-      geo: {
-        lat: "",
-        lng: "",
-      },
     },
     phone: "",
     website: "",
     company: {
       name: "",
-      catchPhrase: "",
-      bs: "",
     },
   };
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    formik.setValues(data);  
+    data && formik.setValues(data);  
   }, 
     [data]);
 
   const formik = useFormik({
     initialValues: initialValues,
     onSubmit: (values) => {
-      setEditRobot(values);
+      onSubmit(values)
       setOpen(false);
     },
     validationSchema: validationSchema,
@@ -75,7 +63,7 @@ function RobotInfo({data, type, isDisabled, setOpen, setEditRobot}) {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <div className={type ? 'popup-information' : 'information'}>
+      <div className={type === 'popup' ? 'popup-information' : 'information'}>
         {!type && (
       <div className="return-icon">
       <img className="return-icon-img" src="https://www.svgrepo.com/show/500472/back.svg" alt="return button" onClick={() => navigate('/')}></img>
@@ -164,30 +152,7 @@ function RobotInfo({data, type, isDisabled, setOpen, setEditRobot}) {
           touched={formik.touched.address?.zipcode}
           isDisabled={isDisabled}
         />
-        <Textfield
-          label="Latitude:"
-          name="address.geo.lat"
-          id="lat"
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          value={formik.values?.address?.geo?.lat}
-          placeholder="Latitude"
-          errorMessage={formik.errors.address?.geo?.lat}
-          touched={formik.touched.address?.geo?.lat}
-          isDisabled={isDisabled}
-        />
-        <Textfield
-          label="Longitude:"
-          name="address.geo.lng"
-          id="lng"
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          value={formik.values?.address?.geo?.lng}
-          placeholder="Longitude"
-          errorMessage={formik.errors.address?.geo?.lng}
-          touched={formik.touched.address?.geo?.lng}
-          isDisabled={isDisabled}
-        />
+       
         <Textfield
           label="Phone:"
           name="phone"
@@ -224,31 +189,7 @@ function RobotInfo({data, type, isDisabled, setOpen, setEditRobot}) {
           touched={formik.touched?.company?.name}
           isDisabled={isDisabled}
         />
-        <Textfield
-          label="Company Catch Phrase:"
-          name="company.catchPhrase"
-          id="company"
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          value={formik.values?.company?.catchPhrase}
-          placeholder="Catch Phrase"
-          errorMessage={formik.errors?.company?.catchPhrase}
-          touched={formik.touched?.company?.catchPhrase}
-          isDisabled={isDisabled}
-          is
-        />
-        <Textfield
-          label="Company BS:"
-          name="company.bs"
-          id="bs"
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          value={formik.values?.company?.bs}
-          placeholder="Company BS"
-          errorMessage={formik.errors?.company?.bs}
-          touched={formik.touched?.company?.bs}
-          isDisabled={isDisabled}
-        />
+        
         {type && (
         <div className="input">
           <button id="button" type="submit">
