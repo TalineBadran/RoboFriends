@@ -9,6 +9,7 @@
     padding: 16px;
     transition: transform 0.3s;
     height: 60%;
+    width: 210px;
   }
   
   .robot:hover {

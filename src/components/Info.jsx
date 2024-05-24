@@ -8,7 +8,7 @@ import RobotInfo from "./RobotInfo";
 function Info() {
   const { id } = useParams();
   const [data, setData] = useState();
-
+  const [handleBack, sethandleBack] = useState(true);
   
   const fetchData = async () => {
     try {
@@ -30,7 +30,7 @@ function Info() {
 
   return (
     <>
-    <RobotInfo data={data} isDisabled /></>
+    <RobotInfo data={data} handleBack={handleBack} isDisabled /></>
   );
 }
 

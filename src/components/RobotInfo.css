@@ -16,6 +16,15 @@
     padding: 15px;
   }
 
+  .create-information {
+    margin-top: 100px;
+    margin-bottom: 5px;
+  }
+
+  .view-information {
+    margin-top: 3px;
+  }
+
   form {
     display: flex;
     justify-content: center;

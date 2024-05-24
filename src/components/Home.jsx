@@ -20,15 +20,14 @@ function Home() {
 
   const updateRobot = async (editRobot) => {
     try {
-      const response = await axios.patch(`http://localhost:8080/user/${editRobot._id}`, editRobot);
-      const updatedRobot = response.data;
-
-      const updatedRobots = robots.map((robot) =>
-        robot._id === updatedRobot._id ? updatedRobot : robot
-      );
-
-      setRobots(updatedRobots);
+      const updatedRobots = await axios.patch(`http://localhost:8080/user/${editRobot._id}`, editRobot);
       setOpen(false); 
+      setRobots(
+        updatedRobots?.data.map((robot, index) => ({
+          ...robot,
+          imageUrl: `https://robohash.org/${index + 1}?size=200x200`,
+        }))
+      );
     } catch (error) {
       console.error("Error updating data:", error);
     }
@@ -109,7 +108,7 @@ function Home() {
         </div>
       </div>
       <div>
-        <Dialog open={open} onClose={() => setOpen(false)}  >
+        <Dialog open={open} onClose={() => setOpen(false)}>
           <DialogContent className="hidden-scrollbar">
             <div className="close edit-icon">
               <img

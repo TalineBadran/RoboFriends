@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./RobotInfo.css"
 
-function RobotInfo({data, type, isDisabled, setOpen, setEditRobot, onSave, onSubmit}) {
+function RobotInfo({data, type, isDisabled, setOpen, setEditRobot, onSave, onSubmit, handleBack}) {
 
   const validationSchema = yup.object().shape({
     name: yup
@@ -63,8 +63,8 @@ function RobotInfo({data, type, isDisabled, setOpen, setEditRobot, onSave, onSub
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <div className={type === 'popup' ? 'popup-information' : 'information'}>
-        {!type && (
+        <div className={type === 'popup' ? 'popup-information' : type === 'create' ? 'information create-information' : 'information view-information'}>
+        {handleBack && (
       <div className="return-icon">
       <img className="return-icon-img" src="https://www.svgrepo.com/show/500472/back.svg" alt="return button" onClick={() => navigate('/')}></img>
     </div> )}
