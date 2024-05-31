@@ -2,9 +2,10 @@
     border-radius: 0.5rem;
     box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2);
     background-color: #9eebcf;
-    width: 35%;
+    width: 25%;
     padding: 15px;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     height: fit-content;
@@ -16,14 +17,15 @@
     padding: 15px;
   }
 
-  .create-information {
-    margin-top: 100px;
+  .create-information, .view-information {
+    margin-top: 5px;
     margin-bottom: 5px;
   }
 
-  .view-information {
-    margin-top: 3px;
-  }
+  /* .view-information {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  } */
 
   form {
     display: flex;
@@ -58,4 +60,11 @@
     width: 100%;
     display: flex;
     justify-content: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }

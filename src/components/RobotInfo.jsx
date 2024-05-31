@@ -68,6 +68,7 @@ function RobotInfo({data, type, isDisabled, setOpen, setEditRobot, onSave, onSub
       <div className="return-icon">
       <img className="return-icon-img" src="https://www.svgrepo.com/show/500472/back.svg" alt="return button" onClick={() => navigate('/')}></img>
     </div> )}
+    <div className="wrapper">
         <Textfield
           label="Name:"
           name="name"
@@ -197,6 +198,7 @@ function RobotInfo({data, type, isDisabled, setOpen, setEditRobot, onSave, onSub
           </button>
         </div>
         )}
+      </div>
       </div>
     </form>
   );

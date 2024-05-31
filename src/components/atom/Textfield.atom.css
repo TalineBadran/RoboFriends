@@ -1,6 +1,6 @@
-.label {
+/* .label {
     width: 190px;
-  }
+  } */
   
   .form {
     display: flex;
@@ -11,13 +11,7 @@
 
   .error {
     color: red;
-    margin: 5px;
-    margin-left: calc(100% - 235px);
-  }
-  
-  #root {
-    display: flex;
-    align-items: center;
-    height: 100vh;
-  }
+    padding-top:4px ;
+    }
+
 
