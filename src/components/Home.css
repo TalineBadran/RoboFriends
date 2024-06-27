@@ -78,3 +78,9 @@ h1 {
   transform: scale(1.05);
   cursor: pointer;
 }
+
+@media screen and (max-width: 850px) {
+  .information {
+    width: 45%;
+  }
+}
